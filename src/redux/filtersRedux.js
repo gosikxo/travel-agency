@@ -29,22 +29,22 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         searchPhrase: action.payload,
-      }
-    };
+      };
+    }
     // TODO - handle other action types
     // DONE
     case CHANGE_TAGS: {
       return {
         ...statePart,
         tag: action.payload,
-      }
-    };
+      };
+    }
     case CHANGE_DURATION: {
       return {
         ...statePart,
         duration: action.payload,
-      }
-    };
+      };
+    }
     default:
       return statePart;
   }

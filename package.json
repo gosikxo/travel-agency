@@ -8,7 +8,8 @@
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "webpack --mode production",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/"
   },
   "husky": {
     "hooks": {

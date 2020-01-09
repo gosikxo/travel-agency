@@ -5,6 +5,11 @@ import styles from './TripListOptions.scss';
 import {Row, Col} from 'react-flexbox-grid';
 
 class TripListOptions extends React.Component {
+  static propTypes = {
+    changeTags: PropTypes.func.isRequired,
+    changeDuration: PropTypes.func.isRequired,
+    duration: PropTypes.number.isRequired,
+  }
   handleTags(tag, checked){
     if(checked) {
       console.log('Adding tag', tag);
@@ -23,7 +28,7 @@ class TripListOptions extends React.Component {
     console.log('Changing duration', type, value);
     // TODO - use action dispatcher from props
     // DONE
-    this.props.changeDuration(duration);
+    this.props.changeDuration(value);
   }
 
   handleSearch(phrase){
