@@ -12,8 +12,18 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
 
   // TODO - filter by duration
+  // DONE
+  if(filters.duration){
+    const pattern = new RegExp(filters.duration, 'i');
+    output = output.filter(trip => pattern.test(trip.name));
+  }
 
   // TODO - filter by tags
+  // DONE
+  if(filters.tag){
+    const pattern = new RegExp(filters.tag, 'i');
+    output = output.filter(trip => pattern.test(trip.name));
+  }
 
   // TODO - sort by cost descending (most expensive goes first)
 
