@@ -2,6 +2,10 @@
 
 export const getAllTrips = ({trips}) => trips;
 
+function parseCost(costString) {
+  return Number.parseFloat(costString.replace('$','').replace(',',''));
+}
+
 export const getFilteredTrips = ({trips, filters}) => {
   let output = trips;
 
@@ -11,21 +15,28 @@ export const getFilteredTrips = ({trips, filters}) => {
     output = output.filter(trip => pattern.test(trip.name));
   }
 
-  // TODO - filter by duration
-  // DONE
   if(filters.duration){
-    const pattern = new RegExp(filters.duration, 'i');
-    output = output.filter(trip => pattern.test(trip.name));
+    output = output.filter(trip => trip.days >= filters.duration.from && trip.days <= filters.duration.to);
   }
 
-  // TODO - filter by tags
-  // DONE
-  if(filters.tag){
-    const pattern = new RegExp(filters.tag, 'i');
-    output = output.filter(trip => pattern.test(trip.name));
+  if(filters.tags.length > 0){
+    output = output.filter(trip => {
+      for(const tag of filters.tags) {
+        if (!trip.tags.includes(tag)) {
+          return false;
+        }
+      }
+      
+      return true;
+    });
   }
 
-  // TODO - sort by cost descending (most expensive goes first)
+  output = [...output].sort((tripA, tripB) => {
+    const costA = parseCost(tripA.cost);
+    const costB = parseCost(tripB.cost);
+
+    return costB-costA;
+  });
 
   return output;
 };
