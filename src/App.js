@@ -49,12 +49,6 @@ class App extends React.Component {
             atLeave={{ opacity: 0 }}
             atActive={{ opacity: 1 }}
             className={styles.switchWrapper}
-            mapStyles={
-              ({offset, opacity}) => ({
-                opacity,
-                transform: `transform: translateY(${offset}px)`,
-              })
-            }
           >
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />

@@ -1,3 +1,8 @@
+@keyframes slide {
+    from { transform: translate(0, 200px); }
+    to   { transform: none; }
+}
+
 .switchWrapper {
     position: relative;
 
@@ -6,5 +11,9 @@
         top: 0;
         left: 0;
         width: 100%;
+        animation-name: slide;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-delay: 0s;            
     }
 }
