@@ -1,24 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { formatPrice } from '../../../utils/formatPrice';
-import { parseOptionPrice } from '../../../utils/parseOptionPrice';
+import PropTypes from 'prop-types'; 
 import styles from './OrderOption.scss';
 
 
-const OrderOptionNumber = ({currentValue, limits, price, setOptionValue}) => {
+const OrderOptionNumber = ({currentValue, limits, setOptionValue}) => {
   const { min, max } = limits;
-  const optionPrice = parseOptionPrice(price);
   return (
     <div className={styles.number}>
       <input 
         className={styles.inputSmall} 
-        onChange={event => setOptionValue(event.currentTarget.value)}
+        onChange={event => setOptionValue(Number.parseInt(event.currentTarget.value))}
         min={min} 
         max={max} 
         value={currentValue} 
         type="number" 
       />
-      {formatPrice(optionPrice.value * currentValue)}
     </div>
   );
 };
