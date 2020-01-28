@@ -38,6 +38,18 @@ const sendOrder = (options, tripCost, tripDetails) => {
     });
 };
 
+const handleSubmitOrder = (options, tripCost, tripDetails) => {
+  if(isOrderValid(options)){
+    sendOrder(options,tripCost,tripDetails);
+  } else {
+    window.alert('You need to add name and contact details to your order.');
+  }
+};
+
+const isOrderValid = (options) => {
+  return options.name.length > 0 && options.contact.length > 0;
+};
+
 const OrderForm = ({ options, tripCost, setOrderOption, tripDetails}) => {
   const totalCost = calculateTotal(tripCost, options);
   const totalCostText = formatPrice(totalCost);
@@ -50,7 +62,7 @@ const OrderForm = ({ options, tripCost, setOrderOption, tripDetails}) => {
             <Col md={4} key={optionProps.id}><OrderOption {...optionProps} setOrderOption={setOrderOption} currentValue={options[optionProps.id]}></OrderOption></Col>
           ))}
           <OrderSummary options={options} tripCost={totalCostText} />
-          <Button onClick={() => sendOrder(options, tripCost, tripDetails)}>Order now!</Button>
+          <Button onClick={() => handleSubmitOrder(options, tripCost, tripDetails)}>Order now!</Button>
         </Col>
       </Row>
     </Grid>
