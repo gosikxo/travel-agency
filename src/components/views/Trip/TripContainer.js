@@ -10,6 +10,7 @@ const mapStateToProps = (state, props) => {
   return {
     ...trip,
     country,
+    countryCode: trip.country.code,
   };
 };
 
